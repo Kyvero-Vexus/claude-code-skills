@@ -2,7 +2,7 @@
 
 Capability delta under test:
 
-> After applying this skill, Claude Code should more reliably design and build Coalton code and projects grounded in Coalton's real language/workflow, instead of drifting into generic typed-functional or generic Common Lisp advice.
+> After applying this skill, Claude Code should more reliably design and build Coalton code and projects grounded in Coalton's real language/workflow, wider docs corpus, and canonical example projects, instead of drifting into generic typed-functional or generic Common Lisp advice.
 
 ## Baseline vs treatment
 
@@ -21,6 +21,8 @@ Capability delta under test:
 8. When should I use `repr :native` or `repr :lisp`?
 9. What is the practical difference between development and release mode?
 10. Why is my Haskell-like partial application idea not fitting Coalton?
+11. Which docs outside the whirlwind tour should I consult for naming, docs generation, iterators, or internals?
+12. Which example project should I read first for parser combinators, type-system work, numerics/interop, or small pedagogical programs?
 
 ## Scoring rubric
 
@@ -46,17 +48,27 @@ Score each prompt 0–2 on each dimension.
 - 1: vague mention of broader areas
 - 2: can range across the real language/workflow surface
 
-### 5. Interop/config correctness
+### 5. Docs corpus coverage
+- 0: ignores most of `docs/`
+- 1: partial mention of extra docs
+- 2: routes appropriately across glossary/style/docs-generation/iterator/internals/manual-source docs
+
+### 6. Example-project coverage
+- 0: ignores the canonical examples from the README
+- 1: vague mention of examples only
+- 2: routes appropriately across `small-coalton-programs`, `thih`, `quil-coalton`, `fractal`, and testing examples
+
+### 7. Interop/config correctness
 - 0: wrong or dangerous advice about interop or modes
 - 1: partial caution only
 - 2: correct guidance on Lisp interop, `repr`, and development/release concerns
 
-### 6. Testing/debugging discipline
+### 8. Testing/debugging discipline
 - 0: omits testing/debugging workflow
 - 1: partial mention only
 - 2: points to proper Coalton debugging/testing tools and structure
 
-Maximum score per prompt: 12
+Maximum score per prompt: 16
 
 ## Keep/discard criterion
 
@@ -65,5 +77,7 @@ Keep the skill only if it improves average score on:
 - Coalton specificity
 - architecture fit
 - full-feature coverage
+- docs corpus coverage
+- example-project coverage
 - interop/config correctness
 - testing/debugging discipline

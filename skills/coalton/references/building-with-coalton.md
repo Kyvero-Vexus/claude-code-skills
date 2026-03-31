@@ -5,6 +5,8 @@ Use it when the question is not merely “what is Coalton?” but “how should 
 
 For full minimum coverage of the language/workflow surface, pair this file with:
 - `references/full-feature-map.md`
+- `references/docs-corpus-map.md`
+- `references/example-project-map.md`
 
 ## What Coalton gives you in practice
 
