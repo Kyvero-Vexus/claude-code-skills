@@ -26,6 +26,15 @@
       "skills": [
         "./skills/croatoan"
       ]
+    },
+    {
+      "name": "coalton",
+      "description": "Build statically typed Common Lisp projects with Coalton",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/coalton"
+      ]
     }
   ]
 }

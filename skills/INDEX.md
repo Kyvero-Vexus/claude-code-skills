@@ -13,3 +13,9 @@
   - Use when: the user wants to build, extend, debug, or broadly understand the practical feature set of Croatoan.
   - Do not use when: the question is generic terminal programming with no Croatoan angle, or purely raw ncurses work with no desire for Croatoan's higher-level API.
   - File: `skills/croatoan/SKILL.md`
+
+- **coalton**
+  - Build statically typed Common Lisp projects with Coalton using the right mix of ASDF/package setup, `coalton-toplevel`, algebraic data, type classes, Lisp interop, config, testing, debugging, and optimization.
+  - Use when: the user wants to build, extend, debug, or broadly understand the practical feature set of Coalton.
+  - Do not use when: the question is generic Common Lisp or generic FP with no Coalton angle.
+  - File: `skills/coalton/SKILL.md`
