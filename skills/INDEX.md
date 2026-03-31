@@ -7,3 +7,9 @@
   - Use when: the user wants to build, extend, debug, or understand the practical feature set of CLIM/McCLIM, including broad “what all does CLIM cover?” questions.
   - Do not use when: the question is generic Common Lisp or purely backend-internal with no application-building guidance needed.
   - File: `skills/clim-spec/SKILL.md`
+
+- **croatoan**
+  - Build Common Lisp terminal applications with Croatoan using the right mix of screens, windows, event loops, bindings, forms, menus, dialogs, layouts, styling, and thread-safe terminal workflows.
+  - Use when: the user wants to build, extend, debug, or broadly understand the practical feature set of Croatoan.
+  - Do not use when: the question is generic terminal programming with no Croatoan angle, or purely raw ncurses work with no desire for Croatoan's higher-level API.
+  - File: `skills/croatoan/SKILL.md`

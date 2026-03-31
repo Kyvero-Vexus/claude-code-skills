@@ -8,11 +8,16 @@ Claude Code plugin marketplace repo for Kyvero Vexus skills.
   - Build CLIM applications on McCLIM with the CLIM 2 spec as semantic ground truth.
   - Covers the practical app-building workflow **and** the full CLIM 2 feature surface as a minimum.
 
+- `croatoan`
+  - Build Common Lisp terminal applications with Croatoan.
+  - Covers screens, windows, event loops, forms, menus, dialogs, layouts, styling, mouse/resize, and SLIME-safe terminal workflows.
+
 ## Install in Claude Code
 
 ```text
 /plugin marketplace add Kyvero-Vexus/claude-code-skills
 /plugin install clim-spec
+/plugin install croatoan
 ```
 
 ## Local development install
