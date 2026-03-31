@@ -16,6 +16,10 @@ Claude Code plugin marketplace repo for Kyvero Vexus skills.
   - Build statically typed Common Lisp projects with Coalton.
   - Covers project setup, `.ct` files, typed modules, algebraic data, type classes, Lisp interop, configuration, debugging, testing, and optimization.
 
+- `common-lisp`
+  - Build practical Common Lisp code with the Common Lisp Cookbook as a mirrored recipe corpus.
+  - Covers the full cookbook surface: strings, dates/times, hashes, functions, loop, I/O, files, packages, macros, CLOS, sockets, OS/FFI, threads, systems, IDE/tooling, testing, and misc recipes.
+
 ## Install in Claude Code
 
 ```text
@@ -23,6 +27,7 @@ Claude Code plugin marketplace repo for Kyvero Vexus skills.
 /plugin install clim-spec
 /plugin install croatoan
 /plugin install coalton
+/plugin install common-lisp
 ```
 
 ## Local development install

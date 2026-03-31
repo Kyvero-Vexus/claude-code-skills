@@ -35,6 +35,15 @@
       "skills": [
         "./skills/coalton"
       ]
+    },
+    {
+      "name": "common-lisp",
+      "description": "Build practical Common Lisp code with the Common Lisp Cookbook",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/common-lisp"
+      ]
     }
   ]
 }
