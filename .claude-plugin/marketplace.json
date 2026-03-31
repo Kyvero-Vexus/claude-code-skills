@@ -1,0 +1,22 @@
+{
+  "name": "kvc-claude-code-skills",
+  "owner": {
+    "name": "Kyvero Vexus",
+    "email": "chrys.lambda@proton.me"
+  },
+  "metadata": {
+    "description": "KVC Claude Code skill marketplace for CLIM/McCLIM and future specialist skills",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "clim-spec",
+      "description": "Build CLIM applications on McCLIM with full CLIM 2 spec coverage",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/clim-spec"
+      ]
+    }
+  ]
+}
