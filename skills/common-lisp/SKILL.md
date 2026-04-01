@@ -70,6 +70,8 @@ Sidecars:
 - `references/building-with-common-lisp.md`
 - `references/cookbook-corpus-map.md`
 - `references/cookbook-example-map.md`
+- `references/chapter-quick-index.md`
+- `references/modern-tooling-translation.md`
 - `references/eval-plan.md`
 - `examples/typed-package-and-hash-table.lisp`
 - `examples/typed-clos-skeleton.lisp`
@@ -79,11 +81,13 @@ Sidecars:
 
 1. Classify the Common Lisp task.
 2. Check the cookbook corpus map so the answer ranges across the whole cookbook when needed.
-3. Check the cookbook example map when attached source files are relevant.
-4. Read the mirrored cookbook chapter(s) before answering from memory.
-5. Extract the recipe, then adapt it to the user's actual implementation/environment.
-6. Mark historical, implementation-specific, or thin/incomplete cookbook coverage explicitly.
-7. Return practical code, caveats, and chapter/example citations.
+3. Use the chapter quick index when the user mainly needs fast routing.
+4. Check the cookbook example map when attached source files are relevant.
+5. Read the mirrored cookbook chapter(s) before answering from memory.
+6. Extract the recipe, then adapt it to the user's actual implementation/environment.
+7. Use the modern-tooling translation sidecar when the cookbook's tooling/runtime guidance is obviously old.
+8. Mark historical, implementation-specific, or thin/incomplete cookbook coverage explicitly.
+9. Return practical code, caveats, and chapter/example citations.
 
 ## Procedure
 
@@ -134,7 +138,17 @@ At minimum, this skill should be able to range across:
 - miscellaneous recipes
 - license/changelog/index context
 
-### 3) Check attached example files when relevant
+### 3) Use the chapter quick index for fast routing
+
+Consult:
+- `references/chapter-quick-index.md`
+
+Use it when the user mainly needs:
+- the fastest route to the right chapter
+- a compact “which page covers X?” answer
+- a quick cookbook navigation layer before deeper reading
+
+### 4) Check attached example files when relevant
 
 Consult:
 - `references/cookbook-example-map.md`
@@ -147,7 +161,7 @@ This especially matters for:
 
 If a chapter has no separate attached file, say the examples are inline in the mirrored HTML.
 
-### 4) Read the mirrored chapter before answering from memory
+### 5) Read the mirrored chapter before answering from memory
 
 The cookbook is mirrored locally for a reason.
 Read the actual chapter file(s) first.
@@ -175,7 +189,7 @@ Common chapter entry points include:
 - `testing.html`
 - `misc.html`
 
-### 5) Extract the recipe, then adapt it
+### 6) Extract the recipe, then adapt it
 
 The cookbook gives recipes, not one-size-fits-all drop-ins.
 Adapt them to:
@@ -188,7 +202,21 @@ Adapt them to:
 When you write new Common Lisp code, do not merely paste cookbook snippets blindly.
 Explain what was preserved and what was adapted.
 
-### 6) Mark historical and implementation-specific advice clearly
+### 7) Translate cookbook-era tooling into modern practice when needed
+
+Consult:
+- `references/modern-tooling-translation.md`
+
+Use it when the cookbook is right in spirit but old in tooling assumptions.
+This especially matters for:
+- `systems.html` versus modern ASDF practice
+- `windows.html` and `emacs-ide.html` versus modern SLIME/SLY workflows
+- `ffi.html`, `os.html`, `process.html`, and `win32.html` when the cookbook is implementation-specific or historically situated
+- cookbook testing examples versus current project testing defaults
+
+Do not erase the cookbook. Preserve the recipe, modernize the delivery.
+
+### 8) Mark historical and implementation-specific advice clearly
 
 Some cookbook material is clearly tied to:
 - older implementations
@@ -210,7 +238,7 @@ Important examples:
 - `windows.html`, `emacs-ide.html`, and `win32.html` include older workflow guidance
 - `ffi.html`, `process.html`, and `os.html` may hinge on implementation/runtime specifics
 
-### 7) Prefer practical output over abstract sermonizing
+### 9) Prefer practical output over abstract sermonizing
 
 The cookbook is strongest when turned into:
 - working snippets
@@ -220,7 +248,7 @@ The cookbook is strongest when turned into:
 
 If the user asks “how do I do X?”, answer with a practical path, not a lecture about Lisp philosophy.
 
-### 8) Use the CLOS tutorial as a first-class subsystem
+### 10) Use the CLOS tutorial as a first-class subsystem
 
 The CLOS section is not just a tiny note — it is effectively a tutorial corpus.
 Use it when the task is about:
@@ -237,7 +265,7 @@ Consult:
 - `clos-tutorial/examples.lisp`
 - `clos-tutorial/present.lisp`
 
-### 9) Use cookbook examples when they are the cheapest path to clarity
+### 11) Use cookbook examples when they are the cheapest path to clarity
 
 If the cookbook gives a directly relevant example file or in-page snippet, use it.
 This is especially valuable for:
@@ -255,17 +283,20 @@ When using this skill successfully, return:
 3. the cookbook example file(s) consulted, if any
 4. the practical recipe or implementation path
 5. any implementation-specific, historical, or thin-coverage caveats
-6. code or edits oriented toward solving the user's actual task
+6. any modern-tooling translation you applied
+7. code or edits oriented toward solving the user's actual task
 
 ## Quality checks
 
 - [ ] the answer is grounded in the mirrored cookbook, not generic memory-only Lisp advice
 - [ ] the skill can range across the **full cookbook corpus** when the request is broad
+- [ ] the chapter quick index supports fast routing
 - [ ] attached cookbook example files are consulted when relevant
 - [ ] historical or implementation-specific cookbook advice is labeled instead of flattened into false universality
 - [ ] the output stays practical and task-oriented
 - [ ] CLOS/tutorial material is treated as a real subsystem, not forgotten
 - [ ] chapters with thin coverage are acknowledged honestly
+- [ ] old tooling guidance is translated into a reasonable modern default when needed
 
 ## Failure handling
 
@@ -276,11 +307,13 @@ When using this skill successfully, return:
 
 ### Broad “what does the cookbook cover?” question
 - consult `references/cookbook-corpus-map.md`
+- consult `references/chapter-quick-index.md`
 - consult `references/cookbook-example-map.md`
 - answer across the whole mirrored corpus, not just the top few chapters
 
 ### Historical chapter confusion
 - say clearly that the chapter is historical, implementation-specific, or tooling-specific when appropriate
+- use `references/modern-tooling-translation.md` when converting the recipe into current practice
 - do not overclaim current portability
 
 ### Thin or incomplete cookbook coverage

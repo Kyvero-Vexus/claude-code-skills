@@ -16,6 +16,8 @@ fail() {
 [ -f "$skill_dir/references/building-with-common-lisp.md" ] || fail "missing building reference"
 [ -f "$skill_dir/references/cookbook-corpus-map.md" ] || fail "missing corpus map"
 [ -f "$skill_dir/references/cookbook-example-map.md" ] || fail "missing example map"
+[ -f "$skill_dir/references/chapter-quick-index.md" ] || fail "missing chapter quick index"
+[ -f "$skill_dir/references/modern-tooling-translation.md" ] || fail "missing modern tooling translation"
 [ -f "$skill_dir/references/eval-plan.md" ] || fail "missing eval plan"
 [ -f "$skill_dir/examples/typed-package-and-hash-table.lisp" ] || fail "missing hash example"
 [ -f "$skill_dir/examples/typed-clos-skeleton.lisp" ] || fail "missing CLOS example"
@@ -37,5 +39,6 @@ fail() {
 rg -q "Common Lisp Cookbook" "$skill_file" || fail "skill does not clearly target the cookbook"
 rg -q "strings|dates and times|hash tables|macros|CLOS|sockets|threads|testing|Win32" "$skill_file" "$skill_dir/references" || fail "skill does not cover the cookbook surface"
 rg -q "historical|implementation-specific|thin cookbook coverage" "$skill_file" "$skill_dir/references" || fail "skill does not handle cookbook caveats"
+rg -q "SLIME|SLY|ASDF|modern" "$skill_dir/references/modern-tooling-translation.md" || fail "modern tooling translation sidecar is too weak"
 
-echo "PASS: common-lisp skill structure, cookbook mirror, example coverage, and caveat handling checks succeeded"
+echo "PASS: common-lisp skill structure, cookbook mirror, quick-index coverage, modern-tooling translation, example coverage, and caveat handling checks succeeded"
