@@ -59,6 +59,7 @@ High-value docs:
 - `~/external_docs/croatoan/README.org`
 - `~/external_docs/croatoan/slime.md`
 - `~/external_docs/croatoan/SUMMARY.md`
+- `~/external_docs/croatoan/CHANGELOG.org`
 
 Important source files:
 - `~/external_src/croatoan/src/croatoan.lisp`
@@ -71,6 +72,8 @@ Important source files:
 Sidecars:
 - `references/building-with-croatoan.md`
 - `references/full-feature-map.md`
+- `references/api-quick-index.md`
+- `references/source-module-map.md`
 - `references/eval-plan.md`
 - `examples/minimal-screen.lisp`
 - `examples/form-menu-app.lisp`
@@ -80,13 +83,15 @@ Sidecars:
 
 1. Classify the TUI you are building.
 2. Check the full Croatoan feature map so the answer covers the actual library surface.
-3. Choose the main interaction model.
-4. Start from Croatoan's real entry points: `with-screen`, windows, bindings, event loop.
-5. Build the screen/window structure before adding behavior.
-6. Use forms/menus/dialogs/layout helpers when the app is structured, not ad hoc.
-7. Handle refresh, resize, mouse, and scrolling deliberately.
-8. Respect Croatoan's terminal-thread rule, especially under SLIME/swank.
-9. Keep Croatoan-high-level guidance separate from raw ncurses escape hatches.
+3. Use the API quick index when the user mainly needs fast API routing.
+4. Use the source-module map when sparse prose docs are not enough.
+5. Choose the main interaction model.
+6. Start from Croatoan's real entry points: `with-screen`, windows, bindings, event loop.
+7. Build the screen/window structure before adding behavior.
+8. Use forms/menus/dialogs/layout helpers when the app is structured, not ad hoc.
+9. Handle refresh, resize, mouse, and scrolling deliberately.
+10. Respect Croatoan's terminal-thread rule, especially under SLIME/swank.
+11. Keep Croatoan-high-level guidance separate from raw ncurses escape hatches.
 
 ## Procedure
 
@@ -125,8 +130,30 @@ At minimum, this skill should be able to range across:
 - soft labels
 - queues/thread handoff/SLIME-safe interaction
 - low-level `ncurses` and `ansi-escape` escape hatches
+- fast API routing by exported symbol family
+- source-module routing for deeper questions where prose docs are sparse
 
-### 3) Choose the main interaction model
+### 3) Use the API quick index for fast routing
+
+Consult:
+- `references/api-quick-index.md`
+
+Use it when the user mainly needs:
+- the fastest route to the right Croatoan API
+- a compact “what API should I use for X?” answer
+- a quick exported-surface routing layer before deeper source reading
+
+### 4) Use the source-module map for deeper questions
+
+Consult:
+- `references/source-module-map.md`
+
+Use it when:
+- the prose docs are too thin
+- the question is really about object model, module boundaries, or implementation behavior
+- you need to know whether to read `classes.lisp`, `form.lisp`, `grid.lisp`, `textarea.lisp`, `dropdown.lisp`, or `slk.lisp`
+
+### 5) Choose the main interaction model
 
 #### Use `with-screen` + direct bindings when:
 - the app is small and keyboard-driven
@@ -185,7 +212,7 @@ Core forms/functions:
 - `queue`
 - `run-event-loop`
 
-### 4) Start from Croatoan's actual entry points
+### 6) Start from Croatoan's actual entry points
 
 For most applications, the safe initial skeleton is:
 - package definition
@@ -198,7 +225,7 @@ For most applications, the safe initial skeleton is:
 
 Do not begin with raw ncurses assumptions unless the user explicitly asks for low-level work.
 
-### 5) Build the screen/window structure first
+### 7) Build the screen/window structure first
 
 Common structure decisions:
 - one screen only for simple apps
@@ -209,7 +236,7 @@ Common structure decisions:
 
 Define the visual regions and lifecycle first, then attach interaction.
 
-### 6) Prefer Croatoan widgets over ad hoc terminal spaghetti
+### 8) Prefer Croatoan widgets over ad hoc terminal spaghetti
 
 If the user wants:
 - forms → use `form`, `field`, `button`, `checkbox`, `textarea`, `dropdown`
@@ -218,7 +245,7 @@ If the user wants:
 
 Do not hand-roll everything with cursor movement and manual string output when Croatoan already has a higher-level construct.
 
-### 7) Handle events deliberately
+### 9) Handle events deliberately
 
 Croatoan is event-oriented.
 Use:
@@ -230,7 +257,7 @@ Use:
 
 If the app will idle, animate, poll, or process queued work, think about `input-blocking` and how `process` gets a chance to run.
 
-### 8) Respect redraw/refresh/resize mechanics
+### 10) Respect redraw/refresh/resize mechanics
 
 For anything nontrivial, think about:
 - `refresh`
@@ -244,7 +271,7 @@ For anything nontrivial, think about:
 Do not assume terminal drawing is magically persistent.
 Make redraw strategy explicit.
 
-### 9) Use styling and drawing as terminal-native tools
+### 11) Use styling and drawing as terminal-native tools
 
 Croatoan supports more than plain text:
 - attributes and color pairs
@@ -256,7 +283,7 @@ Croatoan supports more than plain text:
 
 When the UI needs emphasis or structure, use these instead of inventing brittle ASCII hacks.
 
-### 10) Keep thread safety front and center
+### 12) Keep thread safety front and center
 
 Croatoan's ncurses interaction must stay on the thread that initialized the screen.
 This is especially important under SLIME/swank.
@@ -267,7 +294,7 @@ If the user is developing interactively from Emacs, consult:
 Use `submit` to move terminal work onto the terminal thread.
 Do not advise direct ncurses IO from arbitrary threads.
 
-### 11) Know the escape hatches
+### 13) Know the escape hatches
 
 Croatoan exposes a layered model:
 - `croatoan` / `crt` — high-level API
@@ -284,14 +311,16 @@ When using this skill successfully, return:
 2. the screen/window/panel/form/menu/layout architecture you recommend or implemented
 3. the Croatoan mechanisms being used
 4. the Croatoan docs and source files consulted
-5. the distinction between high-level Croatoan guidance and lower-level escape hatches
-6. code or edits oriented toward a working Croatoan application
-7. thread-safety guidance if SLIME/swank or background threads are involved
+5. the API/source-module areas consulted when the request is broad or implementation-heavy
+6. the distinction between high-level Croatoan guidance and lower-level escape hatches
+7. code or edits oriented toward a working Croatoan application
+8. thread-safety guidance if SLIME/swank or background threads are involved
 
 ## Quality checks
 
 - [ ] the answer is about **building with Croatoan**, not generic ncurses folklore
 - [ ] the skill can range across the **full Croatoan feature surface** when the request is broad
+- [ ] the skill can route quickly via exported API families and source modules when needed
 - [ ] `with-screen` / lifecycle setup is handled coherently
 - [ ] the chosen interaction model matches the app
 - [ ] higher-level Croatoan constructs are preferred over raw terminal micromanagement when appropriate
@@ -308,6 +337,8 @@ When using this skill successfully, return:
 
 ### User asks broadly what Croatoan supports
 - consult `references/full-feature-map.md`
+- consult `references/api-quick-index.md`
+- consult `references/source-module-map.md`
 - answer across the full library surface, not just the basic screen API
 
 ### User starts writing raw ncurses-style code in Croatoan

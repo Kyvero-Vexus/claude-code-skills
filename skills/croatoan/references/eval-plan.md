@@ -7,7 +7,7 @@ Capability delta under test:
 ## Baseline vs treatment
 
 - **Baseline:** no Croatoan-specific skill (or generic terminal advice only)
-- **Treatment:** current Croatoan skill with build workflow, full-feature coverage, docs/source routing, and thread-safety guidance
+- **Treatment:** current Croatoan skill with build workflow, full-feature coverage, API quick routing, source-module routing, and thread-safety guidance
 
 ## Representative prompts
 
@@ -21,6 +21,8 @@ Capability delta under test:
 8. When would I use pads versus windows?
 9. What is the difference between `croatoan`, `ncurses`, and `ansi-escape` here?
 10. What all does Croatoan cover beyond `with-screen` and `add-string`?
+11. Which source file should I read for layout behavior versus form behavior versus class hierarchy?
+12. Which exported API family should I reach for first for queues, menus, drawing, or soft labels?
 
 ## Scoring rubric
 
@@ -46,17 +48,27 @@ Score each prompt 0–2 on each dimension.
 - 1: mentions broader areas vaguely
 - 2: can range across the real library surface
 
-### 5. Thread-safety correctness
+### 5. API quick-routing coverage
+- 0: cannot quickly route to the right exported API family
+- 1: partial routing only
+- 2: routes cleanly by exported surface area
+
+### 6. Source-module routing coverage
+- 0: ignores the source-module structure entirely
+- 1: vague source references only
+- 2: can route cleanly among `classes.lisp`, `form.lisp`, `grid.lisp`, `textarea.lisp`, `dropdown.lisp`, `slk.lisp`, etc.
+
+### 7. Thread-safety correctness
 - 0: unsafe or wrong advice for SLIME/threaded use
 - 1: partial caution only
 - 2: correct terminal-thread/`submit` guidance
 
-### 6. Layer discipline
+### 8. Layer discipline
 - 0: confuses Croatoan high-level API with low-level ncurses/ANSI layers
 - 1: partial distinction
 - 2: clear distinction
 
-Maximum score per prompt: 12
+Maximum score per prompt: 16
 
 ## Keep/discard criterion
 
@@ -65,4 +77,6 @@ Keep the skill only if it improves average score on:
 - API specificity
 - architecture fit
 - full-feature coverage
+- API quick-routing coverage
+- source-module routing coverage
 - thread-safety correctness

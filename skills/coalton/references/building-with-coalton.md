@@ -7,6 +7,8 @@ For full minimum coverage of the language/workflow surface, pair this file with:
 - `references/full-feature-map.md`
 - `references/docs-corpus-map.md`
 - `references/example-project-map.md`
+- `references/operator-quick-index.md`
+- `references/project-workflow-translation.md`
 
 ## What Coalton gives you in practice
 

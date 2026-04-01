@@ -17,6 +17,8 @@ fail() {
 [ -f "$skill_dir/references/full-feature-map.md" ] || fail "missing full-feature-map reference"
 [ -f "$skill_dir/references/docs-corpus-map.md" ] || fail "missing docs-corpus-map reference"
 [ -f "$skill_dir/references/example-project-map.md" ] || fail "missing example-project-map reference"
+[ -f "$skill_dir/references/operator-quick-index.md" ] || fail "missing operator-quick-index reference"
+[ -f "$skill_dir/references/project-workflow-translation.md" ] || fail "missing project-workflow-translation reference"
 [ -f "$skill_dir/references/eval-plan.md" ] || fail "missing eval-plan reference"
 [ -f "$skill_dir/examples/minimal-project.asd" ] || fail "missing minimal-project example"
 [ -f "$skill_dir/examples/minimal-module.lisp" ] || fail "missing minimal-module example"
@@ -46,7 +48,7 @@ fail() {
 
 rg -q "build working \*\*Coalton\*\* code and projects|build working Coalton code and projects" "$skill_file" || fail "skill is not clearly build-oriented"
 rg -q "docs-corpus-map|example-project-map|What's Here\?|small-coalton-programs|quil-coalton|thih|fractal" "$skill_file" "$skill_dir/references" || fail "skill does not clearly cover the wider docs corpus and canonical examples"
-rg -q "coalton-toplevel|define-type|define-class|repr|coalton/testing|development vs release" "$skill_file" "$skill_dir/references" || fail "skill does not reference core Coalton architecture"
+rg -q "operator-quick-index|project-workflow-translation|coalton-toplevel|define-type|define-class|repr|coalton/testing|development vs release" "$skill_file" "$skill_dir/references" || fail "skill does not reference core Coalton architecture and heavier routing layers"
 rg -q "Permission is hereby granted|MIT" "$external_src/LICENSE.txt" || fail "Coalton license check failed"
 
 echo "PASS: coalton skill structure, local references, docs corpus coverage, canonical example coverage, and basic content checks succeeded"

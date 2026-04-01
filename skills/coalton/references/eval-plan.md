@@ -7,7 +7,7 @@ Capability delta under test:
 ## Baseline vs treatment
 
 - **Baseline:** no Coalton-specific skill or only generic typed-FP guidance
-- **Treatment:** current Coalton skill with build workflow, full-feature coverage, interop/config/test/debug guidance, and local docs routing
+- **Treatment:** current Coalton skill with build workflow, full-feature coverage, docs/example routing, operator quick routing, project-workflow translation, and interop/config/test/debug guidance
 
 ## Representative prompts
 
@@ -23,6 +23,8 @@ Capability delta under test:
 10. Why is my Haskell-like partial application idea not fitting Coalton?
 11. Which docs outside the whirlwind tour should I consult for naming, docs generation, iterators, or internals?
 12. Which example project should I read first for parser combinators, type-system work, numerics/interop, or small pedagogical programs?
+13. Which operator page should I consult first for `match`, `repr`, `rec`, `do`, `specialize`, or codegen inspection?
+14. How do I translate the manual into an actual project workflow instead of just reading operator docs in isolation?
 
 ## Scoring rubric
 
@@ -58,17 +60,27 @@ Score each prompt 0–2 on each dimension.
 - 1: vague mention of examples only
 - 2: routes appropriately across `small-coalton-programs`, `thih`, `quil-coalton`, `fractal`, and testing examples
 
-### 7. Interop/config correctness
+### 7. Operator-level routing
+- 0: cannot route effectively through the operator docs
+- 1: partial operator routing only
+- 2: routes cleanly through the relevant operator pages
+
+### 8. Project-workflow translation
+- 0: leaves manual/operator knowledge stranded at the doc level
+- 1: partial project-level translation
+- 2: turns the docs into concrete project structure, interop, testing, and optimization decisions
+
+### 9. Interop/config correctness
 - 0: wrong or dangerous advice about interop or modes
 - 1: partial caution only
 - 2: correct guidance on Lisp interop, `repr`, and development/release concerns
 
-### 8. Testing/debugging discipline
+### 10. Testing/debugging discipline
 - 0: omits testing/debugging workflow
 - 1: partial mention only
 - 2: points to proper Coalton debugging/testing tools and structure
 
-Maximum score per prompt: 16
+Maximum score per prompt: 20
 
 ## Keep/discard criterion
 
@@ -79,5 +91,7 @@ Keep the skill only if it improves average score on:
 - full-feature coverage
 - docs corpus coverage
 - example-project coverage
+- operator-level routing
+- project-workflow translation
 - interop/config correctness
 - testing/debugging discipline

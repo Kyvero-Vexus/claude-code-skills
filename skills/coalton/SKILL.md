@@ -95,6 +95,8 @@ Sidecars:
 - `references/full-feature-map.md`
 - `references/docs-corpus-map.md`
 - `references/example-project-map.md`
+- `references/operator-quick-index.md`
+- `references/project-workflow-translation.md`
 - `references/eval-plan.md`
 - `examples/minimal-project.asd`
 - `examples/minimal-module.lisp`
@@ -106,13 +108,15 @@ Sidecars:
 2. Check the full Coalton feature map so the answer covers the actual language/workflow surface.
 3. Check the full docs corpus map when the question ranges beyond the whirlwind tour/manual core.
 4. Check the example-project map when a real project/example analog exists.
-5. Set up the package/file/ASDF boundary correctly.
-6. Choose Coalton vs Lisp responsibilities deliberately.
-7. Model types and interfaces first.
-8. Implement with idiomatic Coalton constructs.
-9. Use interop and `repr` choices explicitly when crossing the Lisp boundary.
-10. Add tests and use Coalton's debugging/introspection tools.
-11. Tune compiler mode, inlining, and specialization only after semantics are stable.
+5. Use the operator quick index when the task is really about one form/operator.
+6. Use the project-workflow translation when the manual needs to be turned into a practical build plan.
+7. Set up the package/file/ASDF boundary correctly.
+8. Choose Coalton vs Lisp responsibilities deliberately.
+9. Model types and interfaces first.
+10. Implement with idiomatic Coalton constructs.
+11. Use interop and `repr` choices explicitly when crossing the Lisp boundary.
+12. Add tests and use Coalton's debugging/introspection tools.
+13. Tune compiler mode, inlining, and specialization only after semantics are stable.
 
 ## Procedure
 
@@ -155,6 +159,8 @@ At minimum, this skill should be able to range across:
 - known differences from Common Lisp and incomplete features
 - the broader `docs/` corpus: glossary, style guide, doc-generation docs, iterator protocol docs, internals, and manual source layout
 - the canonical example projects named in the README's `What's Here?` section
+- the operator-level reference surface under `docs/manual/site/operators/`
+- practical translation from manual/operator docs into real project workflow decisions
 
 ### 3) Check the broader docs corpus when needed
 
@@ -186,7 +192,26 @@ This includes, at minimum, the README's `What's Here?` examples:
 And in practice also:
 - `coalton-testing-example-project`
 
-### 5) Set up the project boundary correctly
+### 5) Use the operator quick index for narrow questions
+
+Consult:
+- `references/operator-quick-index.md`
+
+Use it when:
+- the user is really asking about one form/operator
+- you need the fastest route through the operator docs
+- a compact “which operator should I use for X?” answer is enough
+
+### 6) Use the project-workflow translation for real implementation planning
+
+Consult:
+- `references/project-workflow-translation.md`
+
+Use it when:
+- the manual/operator docs are correct but too low-level for the task at hand
+- you need to turn doc knowledge into project structure, interop boundaries, testing strategy, or optimization timing
+
+### 7) Set up the project boundary correctly
 
 Coalton lives inside Common Lisp project structure.
 Start with the right scaffolding:
@@ -201,7 +226,7 @@ Critical rule from the docs:
 - do **not** `:use` `#:cl` / `#:common-lisp` in Coalton packages
 - qualify Common Lisp names with `cl:` when needed
 
-### 6) Choose `.lisp` vs `.ct` deliberately
+### 8) Choose `.lisp` vs `.ct` deliberately
 
 Use `.ct` files when:
 - the file is primarily Coalton code
@@ -216,7 +241,7 @@ Use ordinary `.lisp` files when:
 Do not treat `.ct` as a separate language.
 The docs are explicit: it is still Lisp source, just read under Coalton's readtable.
 
-### 7) Model types and interfaces first
+### 9) Model types and interfaces first
 
 For new code, decide these early:
 - plain values/functions via `define`
@@ -228,7 +253,7 @@ For new code, decide these early:
 
 If the module is meant to be a typed core, push most domain semantics into Coalton rather than smearing them across ad hoc Lisp code.
 
-### 8) Use idiomatic Coalton constructs
+### 10) Use idiomatic Coalton constructs
 
 Reach for the language constructs Coalton is designed around:
 - `define`, `declare`
@@ -247,7 +272,7 @@ Important semantic note from the whirlwind tour:
 
 Do not accidentally write Haskell-shaped code that assumes auto-currying.
 
-### 9) Keep the Lisp boundary explicit
+### 11) Keep the Lisp boundary explicit
 
 Use Coalton/Lisp interop on purpose, not as leakage.
 
@@ -268,7 +293,7 @@ Common `repr` choices:
 
 If you cross into Lisp, say exactly why and what guarantees you rely on.
 
-### 10) Choose compiler mode and optimization timing deliberately
+### 12) Choose compiler mode and optimization timing deliberately
 
 Coalton has meaningful development/release differences.
 Consult:
@@ -290,7 +315,7 @@ Optimization/config knobs to consider only when justified:
 - `:auto-continue-redefinition`
 - directives like `inline`, `noinline`, `specialize`, `monomorphize`
 
-### 11) Use the built-in debugging/introspection workflow
+### 13) Use the built-in debugging/introspection workflow
 
 Coalton debugging is still Lisp debugging, plus Coalton-specific inspection tools.
 Consult:
@@ -309,7 +334,7 @@ Useful tools include:
 
 If behavior is surprising, inspect generated code and type information instead of guessing.
 
-### 12) Add tests as part of normal project structure
+### 14) Add tests as part of normal project structure
 
 For nontrivial code, use Coalton's testing workflow.
 Consult:
@@ -325,7 +350,7 @@ The docs' standard path is:
 Do not stop at “it typechecks.”
 Type safety is not a substitute for behavioral tests.
 
-### 13) Do not forget the wider docs and examples surface
+### 15) Do not forget the wider docs and examples surface
 
 The Coalton repository includes more than the whirlwind tour and a few example snippets.
 Do not forget to range across:
@@ -339,7 +364,7 @@ Do not forget to range across:
 
 If the user's question is broad, include those resources instead of silently narrowing the skill back down to the most common syntax topics.
 
-### 14) Do not forget the wider language surface
+### 16) Do not forget the wider language surface
 
 A lot of Coalton usage fixates on just:
 - `coalton-toplevel`
@@ -369,7 +394,7 @@ When using this skill successfully, return:
 2. the package/file/ASDF structure you recommend or implemented
 3. the Coalton constructs being used
 4. the Coalton docs/source files consulted
-5. the broader docs/example areas consulted when the request is broad
+5. the broader docs/example/operator/workflow areas consulted when the request is broad
 6. the explicit Lisp interop or `repr` choices when relevant
 7. code or edits oriented toward a working Coalton project/module
 8. testing/debugging/optimization guidance when relevant
@@ -379,6 +404,7 @@ When using this skill successfully, return:
 - [ ] the answer is about **building with Coalton**, not generic typed-FP folklore
 - [ ] the skill can range across the **full Coalton feature surface** when the request is broad
 - [ ] the skill can range across the broader `docs/` corpus and canonical example projects when the request is broad
+- [ ] the skill can route quickly at the operator level and translate docs into project workflow when needed
 - [ ] project/package/readtable setup is handled coherently
 - [ ] fixed-arity Coalton semantics are respected
 - [ ] higher-level Coalton constructs are preferred over gratuitous raw Lisp leakage
@@ -397,7 +423,8 @@ When using this skill successfully, return:
 - consult `references/full-feature-map.md`
 - consult `references/docs-corpus-map.md`
 - consult `references/example-project-map.md`
-- answer across the language, docs, and example-project surface, not just syntax basics
+- consult `references/operator-quick-index.md`
+- answer across the language, docs, operator, and example-project surface, not just syntax basics
 
 ### Haskell-shaped assumptions leaking in
 - correct for Coalton specifics such as fixed arity, Lisp embedding, and explicit interop/representation controls
