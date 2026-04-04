@@ -20,6 +20,10 @@ Claude Code plugin marketplace repo for Kyvero Vexus skills.
   - Build practical Common Lisp code with the Common Lisp Cookbook as a mirrored recipe corpus.
   - Covers the full cookbook surface: strings, dates/times, hashes, functions, loop, I/O, files, packages, macros, CLOS, sockets, OS/FFI, threads, systems, IDE/tooling, testing, and misc recipes.
 
+- `guix`
+  - Define, build, lint, and debug GNU Guix packages; create and maintain Guix channels.
+  - Covers package definitions, origins, build systems, G-expressions, build phases, channels, manifests, `guix import`/`guix lint`/`guix build` workflows, and common packaging patterns.
+
 ## Install in Claude Code
 
 ```text
@@ -28,6 +32,7 @@ Claude Code plugin marketplace repo for Kyvero Vexus skills.
 /plugin install croatoan
 /plugin install coalton
 /plugin install common-lisp
+/plugin install guix
 ```
 
 ## Local development install

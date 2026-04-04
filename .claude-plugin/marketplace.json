@@ -5,7 +5,7 @@
     "email": "chrys.lambda@proton.me"
   },
   "metadata": {
-    "description": "KVC Claude Code skill marketplace for CLIM/McCLIM and future specialist skills",
+    "description": "KVC Claude Code skill marketplace — Common Lisp, CLIM/McCLIM, Coalton, GNU Guix, and more",
     "version": "1.0.0"
   },
   "plugins": [
@@ -43,6 +43,15 @@
       "strict": false,
       "skills": [
         "./skills/common-lisp"
+      ]
+    },
+    {
+      "name": "guix",
+      "description": "Define, build, lint, and debug GNU Guix packages; create channels; write system configurations; work with G-expressions and build phases",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/guix"
       ]
     }
   ]
